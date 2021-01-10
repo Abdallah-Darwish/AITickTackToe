@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" x:Class="AITickTackToe.Views.PlayerView">
+  <Border BorderBrush="Black" Padding="5" BorderThickness="1">
+    <StackPanel Spacing="5">
+      <TextBlock TextAlignment="Center" Text="{Binding CapitalMyChar, Mode=OneTime}" FontWeight="Bold" FontSize="60" Foreground="{Binding MyBrush, Mode=OneWay}"/>
+      <TextBlock Text="AI Tree Depth"/>
+      <NumericUpDown Minimum="1" Maximum="10" Increment="1" Value="{Binding AITreeDepth, Mode=TwoWay}"/>
+      <CheckBox Content="Automatic play" IsChecked="{Binding IsAutoPlayer, Mode=TwoWay}"/>
+      <Button Content="Use AI" IsEnabled="{Binding IsMyTurn}" Command="{Binding Play}"/>
+    </StackPanel>
+  </Border>
+</UserControl>

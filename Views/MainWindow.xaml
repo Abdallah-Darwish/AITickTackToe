@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:AITickTackToe.ViewModels;assembly=AITickTackToe"
+    xmlns:v="clr-namespace:AITickTackToe.Views;assembly=AITickTackToe"
+    xmlns:c="clr-namespace:AITickTackToe.Controls;assembly=AITickTackToe"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" x:Class="AITickTackToe.Views.MainWindow" Icon="/Assets/avalonia-logo.ico" Title="AITickTackToe">
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+  <TabControl>
+    <TabItem Header="Game">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="20*"/>
+          <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="5*"/>
+          <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <v:PlayerView Grid.Column="0" DataContext="{Binding Player1}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"/>
+        <c:XOPlaygroundControl Grid.Column="1" Name="pg" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"/>
+        <v:PlayerView Grid.Column="2" DataContext="{Binding Player2}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"/>
+        <Button Grid.ColumnSpan="3" Grid.Row="1" Content="Reset" Command="{Binding Reset}"/>
+      </Grid>
+    </TabItem>
+   
+    <TabItem Header="MiniMax Tree" Name="tab2">
+      <c:ImageViewer Source="{Binding DecisionTree}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+    </TabItem>
+  </TabControl>
+
+</Window>
