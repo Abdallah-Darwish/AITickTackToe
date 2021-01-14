@@ -8,6 +8,8 @@
       <TextBlock Text="AI Tree Depth"/>
       <NumericUpDown Minimum="1" Maximum="10" Increment="1" Value="{Binding AITreeDepth, Mode=TwoWay}"/>
       <CheckBox Content="Automatic play" IsChecked="{Binding IsAutoPlayer, Mode=TwoWay}"/>
+      <TextBlock Text="Automatic play delay(ms)"/>
+      <NumericUpDown Minimum="0" Increment="1" Value="{Binding AIDelay, Mode=TwoWay}"/>
       <Button Content="Use AI" IsEnabled="{Binding IsMyTurn}" Command="{Binding Play}"/>
     </StackPanel>
   </Border>

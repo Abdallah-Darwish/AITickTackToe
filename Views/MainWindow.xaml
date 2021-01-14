@@ -28,7 +28,14 @@
     </TabItem>
    
     <TabItem Header="MiniMax Tree" Name="tab2">
-      <c:ImageViewer Source="{Binding DecisionTree}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+      <c:ImageViewer Source="{Binding DecisionTree}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScaleFactor="{Binding DecisionTreeScaleFactor, Mode=TwoWay}">
+        <c:ImageViewer.ContextMenu>
+          <ContextMenu>
+          <MenuItem Command="{Binding ExportDecisionTree}" Header="Export"/>
+          <MenuItem Command="{Binding ResetDecisionTreeScale}" Header="Reset Scale"/>
+          </ContextMenu>
+        </c:ImageViewer.ContextMenu>
+      </c:ImageViewer>
     </TabItem>
   </TabControl>
 

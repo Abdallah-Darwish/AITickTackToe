@@ -55,7 +55,7 @@ namespace AITickTackToe
                     PlaygroundControl = pg,
                     RenderingConfig = new AI.Rendering.DecisionNodeRenderingConfig<Playground>
                     {
-                        AndArcsPaint = new SKPaint
+                        AndArcPaint = new SKPaint
                         {
                             Color = SKColors.Green,
                             IsStroke = true,
@@ -66,7 +66,7 @@ namespace AITickTackToe
                         },
                         BestEdgesPen = new Pen(Brushes.Red, 10),
                         EdgesPen = new Pen(Brushes.Black, 10),
-                        BestNodeIdentifier = new Bitmap(@"C:\Users\abdal\source\repos\AIScratch\check.png").Resize(new PixelSize(30, 30)),
+                        BestNodeIdentifier = new Bitmap(@"C:\Users\abdal\source\repos\AIScratch\check.png").Resize(new PixelSize(50, 50)),
                         ValueConfig = new PlaygroundRenderingConfig
                         {
                             GridPen = new Pen(Brushes.Black, 8),
@@ -76,7 +76,7 @@ namespace AITickTackToe
                             XOTypeface = new Typeface(FontFamily.Default, 100)
                         },
                         SpacingBetweenNodes = 0,
-                        SpaceBetweenNodeAndInfo = 2,
+                        SpaceBetweenNodeValueAndInfo = 2,
                         SpaceBetweenInfoSections = 2,
                         SpacingBetweenLevels = 50,
                         DecisionTypeface = new Typeface(FontFamily.Default, 100),

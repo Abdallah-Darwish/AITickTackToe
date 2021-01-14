@@ -13,9 +13,21 @@ namespace AITickTackToe.AI.Rendering
 {
     public class DecisionNodeRenderingContext<TValue>
     {
+        /// <summary>
+        /// Whether this node lies on the path from best DecisionRoot to the DecisionLeaf
+        /// </summary>
         public bool IsBest { get; }
+        /// <summary>
+        /// Bounds of the value of this node
+        /// </summary>
         public Rect NodeValueBounds { get; }
+        /// <summary>
+        /// Bounds of the value, evaluation result and icons
+        /// </summary>
         public Rect NodeBounds { get; }
+        /// <summary>
+        /// Bounds of the tree rooted at this node.
+        /// </summary>
         public Rect SubTreeBounds { get; }
         public DecisionNode<TValue> Node { get; }
         public ReadOnlyMemory<DecisionNodeRenderingContext<TValue>> Descendants { get; }
@@ -51,14 +63,17 @@ namespace AITickTackToe.AI.Rendering
         public DecisionNodeRenderingContext(DecisionNode<TValue> node, DecisionNodeRenderingConfig<TValue> config) : this(node, null, new Point(), true, config)
         { }
     }
-    //Instances are not thread safe
+    /// <summary>
+    /// Instances are not thread safe
+    /// </summary>
+    /// <typeparam name="TValue">Decision node type.</typeparam>
     public class DecisionNodeRenderer<TValue>
     {
         public DecisionNodeRenderingConfig<TValue> Config { get; }
         public DecisionNodeRenderingContext<TValue> Root { get; }
         public IDecisionNodeValueRenderer<TValue> NodeValueRenderer { get; }
-        private DrawingContext _drawingCtx;
-        //drawing ctx transformation will point to root top left
+        private DrawingContext? _drawingCtx;
+        //drawing ctx transformation will point to ROOT top left
         private Point Draw(DecisionNodeRenderingContext<TValue> nodeCtx)
         {
             static float ToDegress(double r)
@@ -82,13 +97,17 @@ namespace AITickTackToe.AI.Rendering
                 }
                 return angle;
             }
+            if(_drawingCtx == null)
+            {
+                throw new InvalidOperationException($"Initialize {nameof(_drawingCtx)} first.");
+            }
             {
                 //1- Draw value
                 using var _1 = _drawingCtx.PushPostTransform(Matrix.CreateTranslation(nodeCtx.NodeValueBounds.TopLeft));
                 NodeValueRenderer.Draw(_drawingCtx, nodeCtx.Node.Value);
 
                 //2- Draw text
-                using var _2 = _drawingCtx.PushPostTransform(Matrix.CreateTranslation(Config.SpaceBetweenNodeAndInfo + nodeCtx.NodeValueBounds.Width, 0));
+                using var _2 = _drawingCtx.PushPostTransform(Matrix.CreateTranslation(Config.SpaceBetweenNodeValueAndInfo + nodeCtx.NodeValueBounds.Width, 0));
                 var nodeInfoText = new FormattedText
                 {
                     TextAlignment = TextAlignment.Left,
@@ -100,7 +119,7 @@ namespace AITickTackToe.AI.Rendering
                 using var _3 = _drawingCtx.PushPostTransform(Matrix.CreateTranslation(0, nodeInfoText.Bounds.Height + Config.SpaceBetweenInfoSections));
 
                 //3- Draw selection id
-                if (nodeCtx.Node.IsSelected)
+                if (nodeCtx.Node.IsSelected && Config.SelectedNodeIdentifier != null)
                 {
                     var idBounds = new Rect(new Point(0, 0), Config.SelectedNodeIdentifier.Size);
                     _drawingCtx.DrawImage(Config.SelectedNodeIdentifier, 1.0, idBounds, idBounds);
@@ -108,7 +127,7 @@ namespace AITickTackToe.AI.Rendering
                 }
 
                 //4- Draw best id
-                if (nodeCtx.Node.IsBest)
+                if (nodeCtx.Node.IsBest && Config.BestNodeIdentifier != null)
                 {
                     var idBounds = new Rect(new Point(0, 0), Config.BestNodeIdentifier.Size);
                     _drawingCtx.DrawImage(Config.BestNodeIdentifier, 1.0, idBounds, idBounds);
@@ -150,7 +169,7 @@ namespace AITickTackToe.AI.Rendering
                 arc.AddArc(andCircle, lastEdgeAngle, angleBetweenEdges);
 
                 var skContext = (_drawingCtx.PlatformImpl as ISkiaDrawingContextImpl)!;
-                skContext.SkCanvas.DrawPath(arc, Config.AndArcsPaint);
+                skContext.SkCanvas.DrawPath(arc, Config.AndArcPaint);
             }
 
             var nodeTopMid = new Point(nodeCtx.NodeValueBounds.X + nodeCtx.NodeValueBounds.Width / 2, nodeCtx.NodeValueBounds.Y - Config.SpaceBetweenNodeAndEdge);

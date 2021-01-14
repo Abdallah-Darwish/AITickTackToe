@@ -100,7 +100,7 @@ namespace AITickTackToe.Controls
             var p = e.GetPosition(this);
             try
             {
-                var movment = p - _pointerLastLocation;
+                var movment = (p - _pointerLastLocation) * ScaleFactor;
                 try { SourceTopLeft -= new Point(movment.X, 0); }
                 catch { }
                 try { SourceTopLeft -= new Point(0, movment.Y); }
@@ -128,14 +128,6 @@ namespace AITickTackToe.Controls
         }
         public override void Render(DrawingContext ctx)
         {
-            /*
-            base.Render(ctx);
-            if (Source == null) { return; }
-            var srcRect = new Rect(SourceTopLeft, Source.Size / ScaleFactor);
-
-            ctx.DrawImage(Source, 1.0, srcRect, new Rect(default, Bounds.Size));
-            */
-
             base.Render(ctx);
             if (Source == null) { return; }
             var srcRect = new Rect(SourceTopLeft, Source.Size / ScaleFactor);
@@ -144,7 +136,7 @@ namespace AITickTackToe.Controls
             max = its equivalent in the control
             calculate min
             */
-            double dstWidth = 0, dstHeight = 0;
+            double dstWidth, dstHeight;
             if(Source.PixelSize.Width > Source.PixelSize.Height)
             {
                 dstWidth = Bounds.Width;
