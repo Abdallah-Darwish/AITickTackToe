@@ -37,14 +37,6 @@
         </c:ImageViewer.ContextMenu>
       </c:ImageViewer>
     </TabItem>
-    <TabItem Header="About" Padding="5">
-      <TextBlock TextAlignment="Center">
-This project was written by:
-1- Abdallah Darwish
-2- Mohammad Kilani
-3- Abd-Alaziz Hamdan
-      </TextBlock>
-    </TabItem>
   </TabControl>
 
 </Window>
