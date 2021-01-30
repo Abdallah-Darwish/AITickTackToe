@@ -1,6 +1,6 @@
 ﻿using AITickTackToe.AI;
 using AITickTackToe.AI.Rendering;
-using AITickTackToe.XOGame.Rendering;
+using AITickTackToe.TickTackToeGame.Rendering;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;

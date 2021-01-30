@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AITickTackToe.AI;
 using AITickTackToe.Controls;
-using AITickTackToe.XOGame;
+using AITickTackToe.TickTackToeGame;
 using Avalonia.Media;
 using Avalonia.Threading;
 using DynamicData.Binding;

@@ -5,6 +5,7 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using AITickTackToe.ViewModels;
+using ReactiveUI;
 
 namespace AITickTackToe
 {
@@ -29,7 +30,7 @@ namespace AITickTackToe
 
         public bool Match(object data)
         {
-            return data is ViewModelBase;
+            return data is ReactiveObject;
         }
     }
 }

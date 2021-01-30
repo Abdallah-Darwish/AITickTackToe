@@ -7,10 +7,12 @@ namespace AITickTackToe.AI
     {
         Or, And
     }
-    //RENAME ME FFS
     public class DecisionNodeDecision : IComparable<DecisionNodeDecision>, IEquatable<DecisionNodeDecision>
     {
         public EvaluationResult Value { get; init; }
+        /// <summary>
+        /// Number of edges to reach the descendant that achieves this decision
+        /// </summary>
         public int Distance { get; init; } = 0;
 
         public int CompareTo(DecisionNodeDecision? other)
@@ -36,25 +38,35 @@ namespace AITickTackToe.AI
 
         public static bool operator <=(DecisionNodeDecision a, DecisionNodeDecision b) => a.CompareTo(b) <= 0;
         public static bool operator >=(DecisionNodeDecision a, DecisionNodeDecision b) => a.CompareTo(b) >= 0;
-
     }
     public class DecisionNode<T>
     {
         public bool IsSelected { get; set; }
+        /// <summary>
+        /// Whether this node is the best node in its level in the WHOLE tree
+        /// </summary>
         public bool IsBest { get; set; }
         public DecisionNodeType Type { get; }
         public T Value { get; }
+        /// <summary>
+        /// Weight of <see cref="Value"/>
+        /// </summary>
         public EvaluationResult Weight { get; }
         public DecisionNode<T>? Parent { get; private set; }
         ///<summary>My best descendant weight and distance (or number) of moves to it.</summary>
         public DecisionNodeDecision Decision { get; private set; }
+        /// <summary>
+        /// Possible movements from this state(distinct by there <see cref="Decision"/> value)
+        /// </summary>
         public ReadOnlyMemory<DecisionNode<T>> Descendants { get; private set; } = new ReadOnlyMemory<DecisionNode<T>>();
+        /// <summary>
+        /// Recalcualte <see cref="Descendants"/>
+        /// </summary>
+        /// <param name="levels">How many levels to expand</param>
         public void Expand(IDecisionNodeExpander<T> ex, IDecisionNodeEvaluator<T> ev, int levels = 1)
         {
             if (Weight.IsInf || levels <= 0) { return; }
 
-            //TEST Case: Expansion level is 7, fill upper right and lower left and mid left, AI should take upper left diagonal and win
-            //TODO FIX MEEEEEEEEEEEEE
             //WE HAVE SOME Mind fuck here,
             //If I am an "or" node then I want best for me and closest, or worst and furthest
             //If I am "and" node then I want worst and closest, or best and furthest
@@ -151,7 +163,6 @@ namespace AITickTackToe.AI
         {
             Type = type;
         }
-
         public DecisionNode<T> BestSon
         {
             get

@@ -4,7 +4,7 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Media;
 using AITickTackToe.AI.Rendering;
-namespace AITickTackToe.XOGame.Rendering
+namespace AITickTackToe.TickTackToeGame.Rendering
 {
 
     public class PlaygroundRenderingConfig : IDecisionNodeValueConfig<Playground>

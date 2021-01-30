@@ -9,7 +9,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Skia;
 
-namespace AITickTackToe.XOGame.Rendering
+namespace AITickTackToe.TickTackToeGame.Rendering
 {
     public class SimplePlaygroundRenderer : IDecisionNodeValueRenderer<Playground>
     {

@@ -1,6 +1,4 @@
-﻿//TODO: preserve aspect ratio
-
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;

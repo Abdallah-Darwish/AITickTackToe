@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using AITickTackToe.AI;
 
-namespace AITickTackToe.XOGame
+namespace AITickTackToe.TickTackToeGame
 {
+    /// <summary>
+    /// Expands TickToeGame
+    /// </summary>
     public class PlaygroundExpander : IDecisionNodeExpander<Playground>
     {
         private char _myChar = 'x';

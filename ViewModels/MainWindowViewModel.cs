@@ -8,7 +8,7 @@ using System.Text;
 using AITickTackToe.AI;
 using AITickTackToe.AI.Rendering;
 using AITickTackToe.Controls;
-using AITickTackToe.XOGame.Rendering;
+using AITickTackToe.TickTackToeGame.Rendering;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -20,7 +20,7 @@ using ReactiveUI.Fody.Helpers;
 
 namespace AITickTackToe.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase, IDisposable
+    public class MainWindowViewModel : ReactiveObject, IDisposable
     {
         public ReactiveCommand<Unit, Unit> Reset { get; private set; }
         public ReactiveCommand<Unit, Unit> ExportDecisionTree { get; private set; }
@@ -121,7 +121,8 @@ namespace AITickTackToe.ViewModels
                     var v = (bool)e.NewValue;
                     Player1.IsMyTurn = v;
                     Player2.IsMyTurn = !v;
-                    //Dispatcher.UIThread.RunJobs();
+                    //To make program responsive in case of ties
+                    Dispatcher.UIThread.RunJobs();
                 }),
             };
             PlaygroundControl.Version = 0;

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using AITickTackToe.AI;
 
-namespace AITickTackToe.XOGame
+namespace AITickTackToe.TickTackToeGame
 {
+    /// <summary>
+    /// Evaluates by calculating how many rows and cols and diags <see cref="PlaygroundEvaluator.MyChar"/> can fill and win
+    /// </summary>
     public class PlaygroundEvaluator : IDecisionNodeEvaluator<Playground>
     {
         private char _myChar = 'x';

@@ -6,8 +6,8 @@ using AITickTackToe.Controls;
 using Avalonia.Media;
 using SkiaSharp;
 using Avalonia.Media.Imaging;
-using AITickTackToe.XOGame.Rendering;
-using AITickTackToe.XOGame;
+using AITickTackToe.TickTackToeGame.Rendering;
+using AITickTackToe.TickTackToeGame;
 namespace AITickTackToe.Views
 {
     public class MainWindow : Window

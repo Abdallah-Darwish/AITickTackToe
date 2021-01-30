@@ -10,9 +10,8 @@ namespace AITickTackToe
 {
     static class Extensions
     {
-        public static Point Scale(this in Point p, in Size scale)
-            => new Point(p.X * scale.Width, p.Y * scale.Height);
-        public static IBitmap Resize(this Bitmap bmp,PixelSize sz)
+        public static Point Scale(this in Point p, in Size scale) => new Point(p.X * scale.Width, p.Y * scale.Height);
+        public static IBitmap Resize(this Bitmap bmp, PixelSize sz)
         {
             var res = new RenderTargetBitmap(sz);
             using var ctx = res.CreateDrawingContext(null);

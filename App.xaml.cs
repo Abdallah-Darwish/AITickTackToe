@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 using AITickTackToe.ViewModels;
 using AITickTackToe.Views;
 using Avalonia.Media;
-using AITickTackToe.XOGame.Rendering;
+using AITickTackToe.TickTackToeGame.Rendering;
 using Avalonia.Controls;
 using AITickTackToe.Controls;
 using SkiaSharp;
